@@ -1,0 +1,28 @@
+# Deletes the focused worktree checkout without holding the Herdr UI.
+# Build with `cargo build --release`, then link with: herdr plugin link "$PWD"   (see README.md)
+id = "dev.ujizin.delete-worktree-async"
+name = "Delete Worktree Async"
+version = "0.1.0"
+min_herdr_version = "0.9.0"
+description = "Non-blocking / async worktree deletion"
+platforms = ["linux", "macos"]
+
+[[build]]
+command = ["cargo", "build", "--release"]
+
+# Checks that the focused workspace is a linked worktree and opens the confirmation popup.
+[[actions]]
+id = "delete"
+title = "Delete worktree checkout..."
+contexts = ["workspace"]
+command = ["target/release/herdr-delete-worktree-async", "action"]
+
+# The confirmation. On Enter it starts a detached worker and exits, so the popup closes at once.
+# The worker reopens it in its "delete anyway" form when Git refuses a dirty checkout.
+[[panes]]
+id = "confirm"
+title = "delete worktree checkout?"
+placement = "popup"
+width = 72
+height = 10
+command = ["target/release/herdr-delete-worktree-async", "confirm"]

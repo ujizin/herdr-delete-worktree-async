@@ -1,0 +1,15 @@
+[package]
+name = "herdr-delete-worktree-async"
+version = "0.1.0"
+edition = "2021"
+description = "Herdr plugin that deletes a worktree checkout in the background"
+license = "MIT"
+
+[dependencies]
+libc = "0.2"
+serde_json = "1"
+
+[profile.release]
+opt-level = "s"
+lto = true
+strip = true
