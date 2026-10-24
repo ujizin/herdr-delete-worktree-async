@@ -3,7 +3,7 @@ name = "herdr-delete-worktree-async"
 version = "0.1.0"
 edition = "2021"
 description = "Herdr plugin that deletes a worktree checkout in the background"
-license = "MIT"
+license = "Apache-2.0"
 
 [dependencies]
 libc = "0.2"
